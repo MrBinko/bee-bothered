@@ -1,0 +1,85 @@
+/* ===== Global variables (root) ===== */
+:root {
+    --hive-orange: #f58f00;
+    --hive-orange-dark: #d97e00;
+    --nav-text: #fff;
+    --nav-transition: 0.3s ease;
+    --nav-height: 70px;
+  }
+  
+  /* ===== Navigation styling ===== */
+  
+  /* Navbar text colours: white by default, orange on hover */
+  .navbar {
+    --bs-navbar-color: var(--nav-text);
+    --bs-navbar-brand-color: var(--nav-text);
+    --bs-navbar-hover-color: var(--hive-orange);
+    --bs-navbar-active-color: var(--nav-text);
+  }
+  
+  /* Nav links: transparent underline so links don't shift on hover */
+  .navbar .nav-link {
+    color: var(--nav-text);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+    transition: color var(--nav-transition), text-decoration-color var(--nav-transition);
+  }
+  
+  /* Hover and keyboard focus: orange text + matching orange underline */
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus {
+    color: var(--hive-orange);
+    text-decoration-color: var(--hive-orange);
+  }
+  
+  /* Current page: white text with orange underline */
+  .navbar .nav-link.active {
+    color: var(--nav-text);
+    text-decoration-color: var(--hive-orange);
+  }
+  
+  /* ===== Join The Hive button ===== */
+  .btn-hive,
+  .btn-hive.active {
+    background-color: var(--hive-orange);
+    border-color: var(--hive-orange);
+    color: var(--nav-text);
+    opacity: 1;
+    transition: all var(--nav-transition);
+  }
+  
+  /* Hover, focus and click: darker orange, text stays white */
+  .btn-hive:hover,
+  .btn-hive:focus,
+  .btn-hive:active {
+    background-color: var(--hive-orange-dark);
+    border-color: var(--hive-orange-dark);
+    color: var(--nav-text);
+  }
+
+ /* Bigger logo, same navbar height */
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 1rem;
+  }
+  
+  .navbar-brand img {
+    height: 80px;
+    width: auto;
+    display: block;
+  }
+  
+  /* Smaller logo on phones so it doesn't crowd the menu button */
+  @media (max-width: 575.98px) {
+    .navbar-brand img {
+      height: 50px;
+    }
+  }
