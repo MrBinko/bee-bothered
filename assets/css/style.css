@@ -1,85 +1,234 @@
-/* ===== Global variables (root) ===== */
+/* =========================================================
+   style.css
+   Loads AFTER Bootstrap, so these rules override it.
+   1. Variables  2. Page  3. Navbar  4. Buttons  5. Hero  6. Responsive
+   ========================================================= */
+
+
+/* ---------- 1. GLOBAL VARIABLES ---------- */
 :root {
-    --hive-orange: #f58f00;
-    --hive-orange-dark: #d97e00;
+    --bg-dark: #212529;          /* card / button-text dark */
+    --hive-yellow: #ffcc00;      /* buttons, highlights, stars */
+    --hive-yellow-dark: #e6b800; /* button hover / click */
+    --hive-orange: #f58f00;      /* nav link hover + active underline */
+    --card-border: #66551a;      /* hero card outline */
     --nav-text: #fff;
-    --nav-transition: 0.3s ease;
-    --nav-height: 70px;
+    --nav-logo-height: 50px;     /* logo height on small screens */
   }
   
-  /* ===== Navigation styling ===== */
-  
-  /* Navbar text colours: white by default, orange on hover */
-  .navbar {
-    --bs-navbar-color: var(--nav-text);
-    --bs-navbar-brand-color: var(--nav-text);
-    --bs-navbar-hover-color: var(--hive-orange);
-    --bs-navbar-active-color: var(--nav-text);
+  /* Bigger logo from 768px up */
+  @media (min-width: 768px) {
+    :root { --nav-logo-height: 80px; }
   }
   
-  /* Nav links: transparent underline so links don't shift on hover */
+  
+  /* ---------- 2. PAGE ---------- */
+  /* Page background and text colour come from data-bs-theme="dark" on <html>.
+     To change the page colour, set --bs-body-bg here. */
+  main { margin: 25px; }
+  
+  
+  /* ---------- 3. NAVBAR ---------- */
+  
+  /* Logo. max-width always leaves room for the burger button on tiny screens. */
+  .navbar-brand { max-width: calc(100% - 4.5rem); }
+  
+  .navbar-brand img {
+    height: var(--nav-logo-height);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+  
+  /* Links: white, with a transparent underline so nothing shifts on hover */
   .navbar .nav-link {
     color: var(--nav-text);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-decoration-thickness: 2px;
+    text-decoration: underline 2px transparent;
     text-underline-offset: 6px;
-    transition: color var(--nav-transition), text-decoration-color var(--nav-transition);
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
   }
   
-  /* Hover and keyboard focus: orange text + matching orange underline */
+  /* Hover / keyboard focus: orange text and underline */
   .navbar .nav-link:hover,
   .navbar .nav-link:focus {
     color: var(--hive-orange);
     text-decoration-color: var(--hive-orange);
   }
   
-  /* Current page: white text with orange underline */
+  /* Current page: white text, orange underline (must stay after the hover rule) */
   .navbar .nav-link.active {
     color: var(--nav-text);
     text-decoration-color: var(--hive-orange);
   }
   
-  /* ===== Join The Hive button ===== */
-  .btn-hive,
-  .btn-hive.active {
-    background-color: var(--hive-orange);
-    border-color: var(--hive-orange);
-    color: var(--nav-text);
-    opacity: 1;
-    transition: all var(--nav-transition);
+  /* Burger menu (below 620px): button sits left, with space above and BELOW it */
+  .navbar .btn-hive {
+    align-self: flex-start;
+    margin: 0.5rem 0 1rem;
   }
   
-  /* Hover, focus and click: darker orange, text stays white */
-  .btn-hive:hover,
-  .btn-hive:focus,
-  .btn-hive:active {
-    background-color: var(--hive-orange-dark);
-    border-color: var(--hive-orange-dark);
-    color: var(--nav-text);
-  }
-
- /* Bigger logo, same navbar height */
-.navbar {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  /* Full navbar from 620px up.
+     Bootstrap has no 620px breakpoint, so this recreates its "navbar-expand" rules.
+     Below 620px Bootstrap's normal collapsed (burger) layout applies with no extra CSS. */
+  @media (min-width: 620px) {
+    .navbar-expand-custom { flex-wrap: nowrap; }
+    .navbar-expand-custom .navbar-toggler { display: none; }
+    .navbar-expand-custom .navbar-collapse { display: flex !important; flex-basis: auto; }
   
-  .navbar-brand {
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-right: 1rem;
-  }
-  
-  .navbar-brand img {
-    height: 80px;
-    width: auto;
-    display: block;
-  }
-  
-  /* Smaller logo on phones so it doesn't crowd the menu button */
-  @media (max-width: 575.98px) {
-    .navbar-brand img {
-      height: 50px;
+    .navbar-expand-custom .navbar-nav {
+      flex-direction: row;
+      align-items: center;
+      margin-right: 3rem;
     }
+  
+    .navbar-expand-custom .navbar-nav .nav-link {
+      padding-inline: var(--bs-navbar-nav-link-padding-x);
+    }
+  
+    /* Button goes back to sitting inline with the links */
+    .navbar-expand-custom .navbar-nav .btn-hive {
+      align-self: auto;
+      margin: 0 0 0 0.5rem;
+    }
+  }
+  
+  
+  /* ---------- 4. BUTTONS ----------
+     Bootstrap buttons read every state colour from --bs-btn-* variables,
+     so these cover normal, hover, focus, click and .active in one rule. */
+  
+  /* Shared size and weight */
+  .btn-hive,
+  .btn-hive-outline {
+    --bs-btn-padding-y: 0.625rem;
+    --bs-btn-font-weight: 600;
+  }
+  
+  /* Solid yellow button */
+  .btn-hive {
+    --bs-btn-color: var(--bg-dark);
+    --bs-btn-bg: var(--hive-yellow);
+    --bs-btn-border-color: var(--hive-yellow);
+    --bs-btn-hover-color: var(--bg-dark);
+    --bs-btn-hover-bg: var(--hive-yellow-dark);
+    --bs-btn-hover-border-color: var(--hive-yellow-dark);
+    --bs-btn-active-color: var(--bg-dark);
+    --bs-btn-active-bg: var(--hive-yellow-dark);
+    --bs-btn-active-border-color: var(--hive-yellow-dark);
+    --bs-btn-focus-shadow-rgb: 255, 204, 0;
+  }
+  
+  /* Outlined white button, fills yellow on hover */
+  .btn-hive-outline {
+    --bs-btn-color: #fff;
+    --bs-btn-border-color: #fff;
+    --bs-btn-hover-color: var(--bg-dark);
+    --bs-btn-hover-bg: var(--hive-yellow);
+    --bs-btn-hover-border-color: var(--hive-yellow);
+    --bs-btn-active-color: var(--bg-dark);
+    --bs-btn-active-bg: var(--hive-yellow-dark);
+    --bs-btn-active-border-color: var(--hive-yellow-dark);
+    --bs-btn-focus-shadow-rgb: 255, 204, 0;
+  }
+  
+  
+  /* ---------- 5. HERO SECTION ---------- */
+  .hero-section { padding: 50px 4% 90px; }
+  
+  /* Shared look for both hero cards.
+     (The left card's border is removed with Bootstrap's border-0 class in the HTML.) */
+  .hero-card {
+    min-height: 420px;
+    background-color: var(--bg-dark);
+    color: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .hero-card .card-body { padding: 30px; }
+  
+  /* Left card */
+  .hero-title {
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  
+  .hero-title span { color: var(--hive-yellow); }
+  
+  .hero-description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  
+  /* Right card: dashed label */
+  .preview-label {
+    color: var(--hive-yellow);
+    border: 1px dashed #b38c00;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  
+  /* Right card: input fields (background restated on focus to beat Bootstrap's focus style) */
+  .task-input,
+  .task-input:focus {
+    background-color: #292929;
+    color: #fff;
+  }
+  
+  .task-input {
+    min-height: 46px;
+    border: 1px solid #484848;
+    border-radius: 9px;
+    font-size: 0.9rem;
+  }
+  
+  .task-input:focus {
+    border-color: var(--hive-yellow);
+    box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.15);
+  }
+  
+  .task-input::placeholder {
+    color: #b5b5b5;
+    opacity: 1;
+  }
+  
+  /* Right card: helper profile */
+  .helper-profile { min-height: 65px; }
+  
+  .helper-avatar {
+    width: 55px;
+    height: 55px;
+    border: 2px solid var(--hive-yellow);
+  }
+  
+  .helper-name { font-size: 0.95rem; }
+  
+  .helper-stars {
+    color: var(--hive-yellow);
+    letter-spacing: 1px;
+  }
+  
+  .helper-verification { font-size: 0.8rem; }
+  
+  
+  /* ---------- 6. RESPONSIVE ---------- */
+  
+  /* Tablet and below */
+  @media (max-width: 767.98px) {
+    .hero-section { padding: 30px 4% 60px; }
+    .hero-card { min-height: 380px; }
+    .hero-card .card-body { padding: 22px; }
+    .hero-title { font-size: clamp(2rem, 7vw, 3rem); }
+  }
+  
+  /* Small phones */
+  @media (max-width: 400px) {
+    .hero-buttons .btn { width: 100%; }
+    .task-input { font-size: 0.75rem; }
   }
