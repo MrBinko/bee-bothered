@@ -1,36 +1,55 @@
 /* =========================================================
-   style.css
-   Loads AFTER Bootstrap, so these rules override it.
-   1. Variables  2. Page  3. Navbar  4. Buttons  5. Hero  6. Responsive
+   style.css  (loads AFTER Bootstrap so it can override it)
+   1 Variables · 2 Page + sections · 3 Navbar · 4 Buttons
+   5 Reusable components (cards, image slots, tags, badges)
+   6 Hero · 7 CTA banner · 8 Responsive
    ========================================================= */
 
 
-/* ---------- 1. GLOBAL VARIABLES ---------- */
+/* ---------- 1. VARIABLES ---------- */
 :root {
-    --bg-dark: #212529;          /* card / button-text dark */
-    --hive-yellow: #ffcc00;      /* buttons, highlights, stars */
+    --bg-dark: #212529;          /* page + dark sections */
+    --bg-light: #eceff3;         /* alternate sections */
+    --card-bg: #212529;
+    --card-border: #66551a;
+    --card-radius: 15px;
+    --hive-yellow: #ffcc00;      /* buttons, highlights */
     --hive-yellow-dark: #e6b800; /* button hover / click */
     --hive-orange: #f58f00;      /* nav link hover + active underline */
-    --card-border: #66551a;      /* hero card outline */
     --nav-text: #fff;
     --nav-logo-height: 50px;     /* logo height on small screens */
   }
   
-  /* Bigger logo from 768px up */
   @media (min-width: 768px) {
-    :root { --nav-logo-height: 80px; }
+    :root { --nav-logo-height: 80px; }   /* bigger logo from 768px */
   }
   
   
-  /* ---------- 2. PAGE ---------- */
-  /* Page background and text colour come from data-bs-theme="dark" on <html>.
-     To change the page colour, set --bs-body-bg here. */
-  main { margin: 25px; }
+  /* ---------- 2. PAGE + SECTIONS ---------- */
+  body {
+    background-color: var(--bg-dark);
+    color: var(--bg-light);
+  }
+  
+  /* Every section gets the same spacing */
+  .section-hive { padding: 4rem 4%; }
+  
+  /* Yellow line between sections (bottom of one = top of the next, so no doubling) */
+  main > .section-hive { border-bottom: 5px solid var(--hive-yellow); }
+  
+  /* Alternate sections (2nd, 4th, 6th...) turn light automatically.
+     The hero is section 1, so the first light one is directly below it. */
+  main > .section-hive:nth-of-type(even) {
+    background-color: var(--bg-light);
+    color: var(--bg-dark);
+  }
+  
+  .text-hive { color: var(--hive-yellow); }   /* yellow text helper */
   
   
   /* ---------- 3. NAVBAR ---------- */
   
-  /* Logo. max-width always leaves room for the burger button on tiny screens. */
+  /* Logo: max-width always leaves room for the burger button */
   .navbar-brand { max-width: calc(100% - 4.5rem); }
   
   .navbar-brand img {
@@ -41,36 +60,37 @@
     object-position: left center;
   }
   
-  /* Links: white, with a transparent underline so nothing shifts on hover */
-  .navbar .nav-link {
+  /* Links: white, transparent underline so nothing shifts on hover */
+  .navbar .nav-link,
+  .footer-link {
     color: var(--nav-text);
     text-decoration: underline 2px transparent;
     text-underline-offset: 6px;
     transition: color 0.3s ease, text-decoration-color 0.3s ease;
   }
   
-  /* Hover / keyboard focus: orange text and underline */
   .navbar .nav-link:hover,
-  .navbar .nav-link:focus {
+  .navbar .nav-link:focus,
+  .footer-link:hover,
+  .footer-link:focus {
     color: var(--hive-orange);
     text-decoration-color: var(--hive-orange);
   }
   
-  /* Current page: white text, orange underline (must stay after the hover rule) */
+  /* Current page: white text, orange underline (keep after the hover rule) */
   .navbar .nav-link.active {
     color: var(--nav-text);
     text-decoration-color: var(--hive-orange);
   }
   
-  /* Burger menu (below 620px): button sits left, with space above and BELOW it */
+  /* Burger menu (below 620px): button sits left with space above and below */
   .navbar .btn-hive {
     align-self: flex-start;
     margin: 0.5rem 0 1rem;
   }
   
-  /* Full navbar from 620px up.
-     Bootstrap has no 620px breakpoint, so this recreates its "navbar-expand" rules.
-     Below 620px Bootstrap's normal collapsed (burger) layout applies with no extra CSS. */
+  /* Full navbar from 620px up (recreates Bootstrap's "navbar-expand").
+     Below 620px Bootstrap's normal burger layout applies. */
   @media (min-width: 620px) {
     .navbar-expand-custom { flex-wrap: nowrap; }
     .navbar-expand-custom .navbar-toggler { display: none; }
@@ -86,7 +106,6 @@
       padding-inline: var(--bs-navbar-nav-link-padding-x);
     }
   
-    /* Button goes back to sitting inline with the links */
     .navbar-expand-custom .navbar-nav .btn-hive {
       align-self: auto;
       margin: 0 0 0 0.5rem;
@@ -95,17 +114,16 @@
   
   
   /* ---------- 4. BUTTONS ----------
-     Bootstrap buttons read every state colour from --bs-btn-* variables,
-     so these cover normal, hover, focus, click and .active in one rule. */
-  
-  /* Shared size and weight */
+     Bootstrap buttons read every state from --bs-btn-* variables, so each
+     rule covers normal, hover, focus, click and .active. */
   .btn-hive,
-  .btn-hive-outline {
+  .btn-hive-outline,
+  .btn-cta {
     --bs-btn-padding-y: 0.625rem;
     --bs-btn-font-weight: 600;
   }
   
-  /* Solid yellow button */
+  /* Solid yellow, dark text */
   .btn-hive {
     --bs-btn-color: var(--bg-dark);
     --bs-btn-bg: var(--hive-yellow);
@@ -119,7 +137,7 @@
     --bs-btn-focus-shadow-rgb: 255, 204, 0;
   }
   
-  /* Outlined white button, fills yellow on hover */
+  /* White outline, fills yellow on hover */
   .btn-hive-outline {
     --bs-btn-color: #fff;
     --bs-btn-border-color: #fff;
@@ -132,31 +150,106 @@
     --bs-btn-focus-shadow-rgb: 255, 204, 0;
   }
   
+  /* Dark button with yellow text (used on the yellow banner; pair with Bootstrap's btn-dark) */
+  .btn-cta {
+    --bs-btn-color: var(--hive-yellow);
+    --bs-btn-hover-color: var(--hive-yellow);
+    --bs-btn-active-color: var(--hive-yellow);
+  }
   
-  /* ---------- 5. HERO SECTION ---------- */
-  .hero-section { padding: 50px 4% 90px; }
   
-  /* Shared look for both hero cards.
-     (The left card's border is removed with Bootstrap's border-0 class in the HTML.) */
-  .hero-card {
-    min-height: 420px;
-    background-color: var(--bg-dark);
+  /* ---------- 5. REUSABLE COMPONENTS ---------- */
+  
+  /* CARD: one base look + four sizes. Use as: class="card card-hive card-hive-sm"
+     Cards fill their column's height, so cards in one row always match.
+     -xs  = small square tile (Popular tasks)
+     -sm  = tile (How the app works)
+     -md  = info card (problem/solution, Inside the app)
+     -lg  = hero card */
+  .card-hive {
+    --card-min-h: 0;
+    --card-pad: 1.25rem;
+    height: 100%;
+    min-height: var(--card-min-h);
+    background-color: var(--card-bg);
     color: #fff;
-    border: 1px solid var(--card-border);
-    border-radius: 15px;
+    border: 3px solid var(--card-border);
+    border-radius: var(--card-radius);
     overflow: hidden;
   }
   
-  .hero-card .card-body { padding: 30px; }
+  .card-hive .card-body { padding: var(--card-pad); }
   
-  /* Left card */
+  .card-hive-sm { --card-min-h: 260px; }
+  .card-hive-md { --card-min-h: 130px; --card-pad: 1.5rem; }
+  .card-hive-lg { --card-min-h: 420px; --card-pad: 1.875rem; }
+  .card-hive-xs { --card-pad: 0.75rem; height: auto; aspect-ratio: 1 / 1; }   /* small square tile */
+  
+  /* IMAGE SLOT: a dashed placeholder box. Put an <img> inside it and the
+     dashes and label disappear. Sizes: -xs 40px, -sm 80px, -lg 140px, -wide 16:9. */
+  .img-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--slot-w, 100%);
+    aspect-ratio: var(--slot-ratio, 4 / 3);
+    border: 2px dashed currentColor;
+    border-radius: 12px;
+    color: var(--hive-yellow);
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  
+  .img-slot::after { content: attr(data-label); }
+  .img-slot:has(img) { border: 0; }
+  .img-slot:has(img)::after { display: none; }
+  .img-slot img { width: 100%; height: 100%; object-fit: contain; }
+  
+  .img-slot-xs   { --slot-w: 40px;  --slot-ratio: 1; }
+  .img-slot-sm   { --slot-w: 80px;  --slot-ratio: 1; }
+  .img-slot-lg   { --slot-w: 140px; --slot-ratio: 1; }
+  .img-slot-wide { --slot-ratio: 16 / 9; }
+  .img-slot-round { border-radius: 50%; overflow: hidden; }
+  .img-slot-fill { --slot-ratio: auto; flex: 1 1 0; min-height: 0; font-size: 0.65rem; }   /* fills a card */
+  
+  /* TILE GRID: 2 columns on small, 4 on medium, 8 on large (1200px+) */
+  .tile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  @media (min-width: 768px)  { .tile-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1200px) { .tile-grid { grid-template-columns: repeat(8, 1fr); } }
+  
+  /* Small dashed label */
+  .tag-hive {
+    display: inline-block;
+    color: var(--hive-yellow);
+    border: 2px dashed #b38c00;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  
+  /* Yellow hexagon number badge */
+  .hex-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 44px;
+    background-color: var(--hive-yellow);
+    color: var(--bg-dark);
+    font-weight: 700;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  }
+  
+  
+  /* ---------- 6. HERO ---------- */
+  .hero-section { padding-top: 5rem; }   /* room for the mascot above the card */
+  
   .hero-title {
     font-size: clamp(2rem, 3.5vw, 3.5rem);
     font-weight: 800;
     line-height: 1.1;
   }
-  
-  .hero-title span { color: var(--hive-yellow); }
   
   .hero-description {
     font-size: 1.05rem;
@@ -164,17 +257,16 @@
     max-width: 480px;
   }
   
-  /* Right card: dashed label */
-  .preview-label {
-    color: var(--hive-yellow);
-    border: 1px dashed #b38c00;
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 10px;
-    font-weight: 700;
+  /* Mascot: absolutely positioned against the column (which is position-relative).
+     A negative top lifts it above the card; z-index keeps it on top. */
+  .hero-mascot {
+    position: absolute;
+    top: -4.5rem;
+    right: 1.5rem;
+    z-index: 2;
   }
   
-  /* Right card: input fields (background restated on focus to beat Bootstrap's focus style) */
+  /* Task preview inputs (background restated on focus to beat Bootstrap's focus style) */
   .task-input,
   .task-input:focus {
     background-color: #292929;
@@ -183,7 +275,7 @@
   
   .task-input {
     min-height: 46px;
-    border: 1px solid #484848;
+    border: 2px solid #484848;
     border-radius: 9px;
     font-size: 0.9rem;
   }
@@ -193,41 +285,41 @@
     box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.15);
   }
   
-  .task-input::placeholder {
-    color: #b5b5b5;
-    opacity: 1;
+  .task-input::placeholder { color: #b5b5b5; opacity: 1; }
+  
+  
+  /* ---------- 7. CTA BANNER ---------- */
+  .banner-hive {
+    background-color: var(--hive-yellow);
+    color: var(--bg-dark);
+    border-radius: var(--card-radius);
+    padding: 2.5rem 2rem;
   }
   
-  /* Right card: helper profile */
-  .helper-profile { min-height: 65px; }
-  
-  .helper-avatar {
-    width: 55px;
-    height: 55px;
-    border: 2px solid var(--hive-yellow);
-  }
-  
-  .helper-name { font-size: 0.95rem; }
-  
-  .helper-stars {
-    color: var(--hive-yellow);
-    letter-spacing: 1px;
-  }
-  
-  .helper-verification { font-size: 0.8rem; }
+  .banner-hive .img-slot { color: var(--bg-dark); }   /* dark dashes on the yellow banner */
   
   
-  /* ---------- 6. RESPONSIVE ---------- */
+  /* ---------- 7b. FOOTER SOCIAL ICONS (on black) ---------- */
+  .social-links a { color: #fff; transition: color 0.3s ease; }
+  .social-links a:hover,
+  .social-links a:focus { color: var(--hive-yellow); }
+  .social-links-yellow a { color: var(--hive-yellow); }
+  .social-links-yellow a:hover,
+  .social-links-yellow a:focus { color: #fff; }
   
-  /* Tablet and below */
+  
+  /* ---------- 8. RESPONSIVE ---------- */
   @media (max-width: 767.98px) {
-    .hero-section { padding: 30px 4% 60px; }
-    .hero-card { min-height: 380px; }
-    .hero-card .card-body { padding: 22px; }
+    .section-hive { padding: 3rem 4%; }
+    .hero-section { padding-top: 2.5rem; }
+    .card-hive-lg { --card-min-h: 380px; --card-pad: 1.375rem; }
     .hero-title { font-size: clamp(2rem, 7vw, 3rem); }
+  
+    /* Mascot stays visible but smaller; extra space above the card makes room for it */
+    .hero-mascot { --slot-w: 90px; top: -3.25rem; right: 1rem; }
+    .hero-preview-col { margin-top: 3.5rem; }
   }
   
-  /* Small phones */
   @media (max-width: 400px) {
     .hero-buttons .btn { width: 100%; }
     .task-input { font-size: 0.75rem; }
