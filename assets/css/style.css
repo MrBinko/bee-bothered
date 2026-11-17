@@ -8,6 +8,9 @@
 
 /* ---------- 1. VARIABLES ---------- */
 :root {
+    --font-body: "Lato", sans-serif;
+    --font-heading: "Roboto Slab", serif;
+    --bs-body-font-family: var(--font-body);
     --bg-dark: #212529;          /* page + dark sections */
     --bg-light: #eceff3;         /* alternate sections */
     --card-bg: #212529;
@@ -29,6 +32,12 @@
   body {
     background-color: var(--bg-dark);
     color: var(--bg-light);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--font-heading);
   }
   
   /* Every section gets the same spacing */
