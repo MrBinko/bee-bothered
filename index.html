@@ -39,7 +39,8 @@
               <a class="nav-link active" aria-current="page" href="index.html">Home</a>
               <a class="nav-link" href="how-it-works.html">How It Works</a>
               <a class="nav-link" href="sign-in.html">Sign In</a>
-              <a class="btn btn-hive rounded-pill px-4" href="join-the-hive.html">Join The Hive</a>
+              <a class="btn btn-hive rounded-pill px-4" href="#" data-bs-toggle="modal"
+                 data-bs-target="#hiveSignupModal">Join The Hive</a>
             </div>
           </div>
 
@@ -68,7 +69,8 @@
                 </p>
                 <div class="hero-buttons d-flex flex-wrap gap-2">
                   <a href="how-it-works.html" class="btn btn-hive rounded-pill px-4">See how it works</a>
-                  <a href="join-the-hive.html" class="btn btn-hive-outline rounded-pill px-4">Join the Hive</a>
+                  <a href="#" class="btn btn-hive-outline rounded-pill px-4" data-bs-toggle="modal"
+                     data-bs-target="#hiveSignupModal">Join the Hive</a>
                 </div>
               </div>
             </div>
@@ -109,34 +111,7 @@
 
         </div>
       </div>
-      
       </section>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
       <!-- ===== 2. THE PROBLEM / THE SOLUTION (light) ===== -->
       <section class="section-hive">
@@ -299,14 +274,15 @@
 
       <!-- ===== 6. CALL TO ACTION BANNER (light section) =====
            Two image slots sit inside the banner, left and right (hidden on phones). -->
-      <section class="section-hive">
+      <section class="section-hive cta-section">
         <div class="container">
           <div class="banner-hive d-flex align-items-center justify-content-between gap-3">
           <div class="img-slot img-slot-lg d-none d-md-flex flex-shrink-0" data-label="Left image"></div>
           <div class="text-center flex-grow-1">
             <h2 class="fw-bold">Someone else can.</h2>
             <p>Join the Hive and get your time back.</p>
-            <a href="join-the-hive.html" class="btn btn-dark btn-cta rounded-pill px-4">Join the Hive</a>
+            <a href="" class="btn btn-dark btn-cta rounded-pill px-4" data-bs-toggle="modal"
+        data-bs-target="#hiveSignupModal">Join the Hive</a>
           </div>
           <div class="img-slot img-slot-lg d-none d-md-flex flex-shrink-0" data-label="Right image"></div>
           </div>
@@ -378,5 +354,159 @@
     <!-- Bootstrap JS (needed for the burger menu) and Font Awesome -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/f86b138b3d.js" crossorigin="anonymous"></script>
+
+<!-- HIVE SIGNUP MODAL -->
+<div class="modal fade hive-signup-modal"
+     id="hiveSignupModal"
+     tabindex="-1"
+     aria-labelledby="hiveSignupModalLabel"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- MODAL HEADER -->
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="hiveSignupModalLabel">
+          Join the Hive
+        </h5>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close">
+        </button>
+
+      </div>
+
+      <!-- MODAL BODY -->
+      <div class="modal-body bg-light">
+
+        <p>Tell us a little about yourself to get started.</p>
+
+        <form id="hiveSignupForm"
+              action="/your-form-endpoint/"
+              method="POST">
+
+          <!-- FIRST NAME -->
+          <div class="mb-3">
+
+            <label for="firstName" class="form-label">
+              First name
+            </label>
+
+            <input type="text"
+                   class="form-control"
+                   id="firstName"
+                   name="first_name"
+                   placeholder="Enter your first name"
+                   required>
+
+          </div>
+
+          <!-- SURNAME -->
+          <div class="mb-3">
+
+            <label for="surname" class="form-label">
+              Surname
+            </label>
+
+            <input type="text"
+                   class="form-control"
+                   id="surname"
+                   name="surname"
+                   placeholder="Enter your surname"
+                   required>
+
+          </div>
+
+          <!-- EMAIL ADDRESS -->
+          <div class="mb-3">
+
+            <label for="emailAddress" class="form-label">
+              Email address
+            </label>
+
+            <input type="email"
+                   class="form-control"
+                   id="emailAddress"
+                   name="email"
+                   placeholder="Enter your email address"
+                   required>
+
+          </div>
+
+          <!-- MEMBERSHIP OPTIONS -->
+          <fieldset class="mb-3">
+
+            <h5 class="form-label">
+              Which option interests you?
+            </h5>
+
+            <!-- HIVER -->
+            <div class="form-check">
+
+              <input class="form-check-input"
+                     type="radio"
+                     id="hiver"
+                     name="interest"
+                     value="Hiver"
+                     required>
+
+              <label class="form-check-label" for="hiver">
+                Hiver
+              </label>
+
+            </div>
+
+            <!-- BUSYBEE -->
+            <div class="form-check">
+
+              <input class="form-check-input"
+                     type="radio"
+                     id="busyBee"
+                     name="interest"
+                     value="BusyBee"
+                     required>
+
+              <label class="form-check-label" for="busyBee">
+                BusyBee
+              </label>
+
+            </div>
+
+            <!-- BOTH -->
+            <div class="form-check">
+
+              <input class="form-check-input"
+                     type="radio"
+                     id="both"
+                     name="interest"
+                     value="Both"
+                     required>
+
+              <label class="form-check-label" for="both">
+                Both
+              </label>
+
+            </div>
+
+          </fieldset>
+
+          <!-- SUBMIT BUTTON -->
+          <button type="submit"
+                  class="btn btn-hive w-100">
+            Submit
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
   </body>
 </html>
