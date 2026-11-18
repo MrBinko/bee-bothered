@@ -625,3 +625,5 @@
     border-color: rgba(255, 204, 0, 0.6);
   }
   .process-section .process-time-line { flex: 1; border-top: 2px dashed var(--hive-yellow); }
+  .process-card { text-align: center;}
+  
