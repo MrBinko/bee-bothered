@@ -30,3 +30,15 @@ if (hiveSignupForm) {
     hiveSignupThanks.classList.add('d-none');
   });
 }
+
+document.querySelectorAll('.task-submission-form').forEach((taskForm) => {
+  taskForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!taskForm.checkValidity()) {
+      taskForm.reportValidity();
+      return;
+    }
+
+    window.alert('Task submitted. Happy Hiving!!');
+  });
+});

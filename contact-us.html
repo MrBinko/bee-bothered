@@ -202,24 +202,37 @@
             <div class="card-body d-flex flex-column">
               <h2 class="fs-4 fw-bold mb-3">New task Example</h2>
 
-              <input type="text" class="form-control task-input mb-2" placeholder="Walk my dog and collect my parcel delivery">
-
-              <div class="row g-2 mb-3">
-                <div class="col-6"><input type="text" class="form-control task-input" placeholder="Wed 18th Dec, 14:00"></div>
-                <div class="col-6"><input type="text" class="form-control task-input" placeholder="Budget: £30"></div>
-              </div>
-
-              <div class="d-flex align-items-center gap-3 mb-3">
-                <div class="img-slot img-slot-xs img-slot-round">
-                  <img src="assets/images/highly-detailed-photograph-2.webp" alt="Carlos J - Verified Busy Bee">
+              <form class="task-submission-form d-flex flex-column flex-grow-1">
+                <div class="row g-2 mb-3">
+                  <div class="col-6">
+                    <label class="visually-hidden" for="contact-task-name">Full name</label>
+                    <input type="text" class="form-control task-input" id="contact-task-name" name="full_name" placeholder="Full name" required>
+                  </div>
+                  <div class="col-6">
+                    <label class="visually-hidden" for="contact-hive-id">Hive ID (5 digits)</label>
+                    <input type="text" class="form-control task-input" id="contact-hive-id" name="hive_id" placeholder="Hive ID" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required>
+                  </div>
                 </div>
-                <div>
-                  <div class="fw-bold">Amira K. <span class="text-hive">★★★★★</span></div>
-                  <small class="text-body-secondary">Verified Busy Bee · nearby</small>
-                </div>
-              </div>
 
-              <button class="btn btn-hive rounded-pill w-100 mt-auto">Post task</button>
+                <input type="text" class="form-control task-input mb-2" placeholder="Walk my dog and collect my parcel delivery">
+
+                <div class="row g-2 mb-3">
+                  <div class="col-6"><input type="text" class="form-control task-input" placeholder="Wed 18th Dec, 14:00"></div>
+                  <div class="col-6"><input type="text" class="form-control task-input" placeholder="Budget: £30"></div>
+                </div>
+
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="img-slot img-slot-xs img-slot-round">
+                    <img src="assets/images/highly-detailed-photograph-2.webp" alt="Carlos J - Verified Busy Bee">
+                  </div>
+                  <div>
+                    <div class="fw-bold">Amira K. <span class="text-hive">★★★★★</span></div>
+                    <small class="text-body-secondary">Verified Busy Bee · nearby</small>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-hive rounded-pill w-100 mt-auto">Post task</button>
+              </form>
             </div>
           </div>
         </div>

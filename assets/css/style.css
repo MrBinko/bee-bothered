@@ -520,6 +520,22 @@
     border-radius: var(--card-radius);
     padding: 2.5rem 2rem;
   }
+
+  .cta-banner-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 1rem;
+  }
+
+  .cta-banner-image-start { justify-self: end; }
+  .cta-banner-copy { grid-column: 2; }
+  .cta-banner-image-end { justify-self: start; }
+
+  @media (max-width: 767.98px) {
+    .cta-banner-layout { grid-template-columns: 1fr; }
+    .cta-banner-copy { grid-column: 1; }
+  }
   
   .banner-hive .img-slot { color: var(--bg-dark); }   /* dark dashes on the yellow banner */
   
@@ -587,6 +603,10 @@
     width: 97%;
     height: auto;
     object-fit: contain;
+  }
+
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .map-with-bees-column + .hero-preview-col { margin-top: var(--bs-gutter-y); }
   }
 
   /* A card sitting inside another card: slightly lighter, thin border */
