@@ -543,6 +543,19 @@
     object-fit: contain;
   }
 
+  .map-with-bees-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-with-bees-image {
+    display: block;
+    width: 97%;
+    height: auto;
+    object-fit: contain;
+  }
+
   /* A card sitting inside another card: slightly lighter, thin border */
   .card-hive-inner {
     --card-bg: #2e343a;
