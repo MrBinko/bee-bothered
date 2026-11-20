@@ -72,17 +72,17 @@ No build step is required — the site is pure HTML, CSS and Bootstrap.
 
 | Page | Screenshot |
 |------|------------|
-| **Home** | ![Home Desktop](screenshots/home-desktop.png) |
-| **How It Works** | ![How It Works Desktop](screenshots/how-it-works-desktop.png) |
-| **Contact Us** | ![Contact Desktop](screenshots/contact-desktop.png) |
+| **Home** | ![Home Desktop] https://fireship.dev/amiresponsive?url=https://mrbinko.github.io/bee-bothered/index.html |
+| **How It Works** | ![How It Works Desktop] https://fireship.dev/amiresponsive?url=https://mrbinko.github.io/bee-bothered/how-it-works.html |
+| **Contact Us** | ![Contact Desktop] https://fireship.dev/amiresponsive?url=https://mrbinko.github.io/bee-bothered/contact-us.html |
 
 ### Mobile Views
 
 | Page | Screenshot |
 |------|------------|
-| **Home** | ![Home Mobile](screenshots/home-mobile.png) |
-| **How It Works** | ![How It Works Mobile](screenshots/how-it-works-mobile.png) |
-| **Contact Us** | ![Contact Mobile](screenshots/contact-mobile.png) |
+| **Home** | ![Home Mobile] https://fireship.dev/amiresponsive?url=https://mrbinko.github.io/bee-bothered/index.html |
+| **How It Works** | ![How It Works Mobile] https://fireship.dev/amiresponsive?url=https://mrbinko.github.io/bee-bothered/how-it-works.html |
+| **Contact Us** | ![Contact Mobile] https://fireship.dev/amiresponsive?url=https://mrbinko.github.io/bee-bothered/contact-us.html |
 
 ---
 
