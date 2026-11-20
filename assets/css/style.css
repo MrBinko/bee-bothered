@@ -8,688 +8,738 @@
 
 /* ---------- 1. VARIABLES ---------- */
 :root {
-    --font-body: "Lato", sans-serif;
-    --font-heading: "Roboto Slab", serif;
-    --bs-body-font-family: var(--font-body);
-    --bg-dark: #212529;          /* page + dark sections */
-    --bg-light: #eceff3;         /* alternate sections */
-    --card-bg: #212529;
-    --card-border: #66551a;
-    --card-radius: 15px;
-    --hive-yellow: #ffcc00;      /* buttons, highlights */
-    --hive-yellow-dark: #e6b800; /* button hover / click */
-    --hive-orange: #f58f00;      /* nav link hover + active underline */
-    --nav-text: #fff;
-    --nav-logo-height: 50px;     /* logo height on small screens */
-  }
-  
-  @media (min-width: 768px) {
-    :root { --nav-logo-height: 80px; }   /* bigger logo from 768px */
-  }
-  
-  
-  /* ---------- 2. PAGE + SECTIONS ---------- */
-  body {
-    background-color: var(--bg-dark);
-    color: var(--bg-light);
-    font-family: var(--font-body);
-  }
+  --font-body: "Lato", sans-serif;
+  --font-heading: "Roboto Slab", serif;
+  --bs-body-font-family: var(--font-body);
+  --bg-dark: #212529;          /* page + dark sections */
+  --bg-light: #eceff3;         /* alternate sections */
+  --card-bg: #212529;
+  --card-border: #66551a;
+  --card-radius: 15px;
+  --hive-yellow: #ffcc00;      /* buttons, highlights */
+  --hive-yellow-dark: #e6b800; /* button hover / click */
+  --hive-orange: #f58f00;      /* nav link hover + active underline */
+  --nav-text: #fff;
+  --nav-logo-height: 50px;     /* logo height on small screens */
+}
 
-  h1, h2, h3, h4, h5, h6,
-  .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: var(--font-heading);
-  }
-  
-  /* Every section gets the same spacing */
-  .section-hive { padding: 4rem 4%; }
-  
-  /* Yellow line between sections (bottom of one = top of the next, so no doubling) */
-  main > .section-hive { border-bottom: 5px solid var(--hive-yellow); }
-  
-  /* Alternate sections (2nd, 4th, 6th...) turn light automatically.
-     The hero is section 1, so the first light one is directly below it. */
-  main > .section-hive:nth-of-type(even) {
-    background-color: var(--bg-light);
-    color: var(--bg-dark);
-  }
-  
-  .text-hive { color: var(--hive-yellow); }   /* yellow text helper */
-  
-  
-  /* ---------- 3. NAVBAR ---------- */
-  
-  /* Logo: max-width always leaves room for the burger button */
-  .navbar-brand { max-width: calc(100% - 4.5rem); }
-  
-  .navbar-brand img {
-    height: var(--nav-logo-height);
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    object-position: left center;
-  }
-  
-  /* Links: white, transparent underline so nothing shifts on hover */
-  .navbar .nav-link,
-  .footer-link {
-    color: var(--nav-text);
-    text-decoration: underline 2px transparent;
-    text-underline-offset: 6px;
-    transition: color 0.3s ease, text-decoration-color 0.3s ease;
-  }
-  
-  .navbar .nav-link:hover,
-  .navbar .nav-link:focus,
-  .footer-link:hover,
-  .footer-link:focus {
-    color: var(--hive-orange);
-    text-decoration-color: var(--hive-orange);
-  }
-  
-  /* Current page: white text, orange underline (keep after the hover rule) */
-  .navbar .nav-link.active {
-    color: var(--nav-text);
-    text-decoration-color: var(--hive-orange);
-  }
-  
-  /* Burger menu (below 620px): button sits left with space above and below */
-  .navbar .btn-hive {
-    align-self: flex-start;
-    margin: 0.5rem 0 1rem;
-  }
-  
-  /* Full navbar from 620px up (recreates Bootstrap's "navbar-expand").
-     Below 620px Bootstrap's normal burger layout applies. */
-  @media (min-width: 620px) {
-    .navbar-expand-custom { flex-wrap: nowrap; }
-    .navbar-expand-custom .navbar-toggler { display: none; }
-    .navbar-expand-custom .navbar-collapse { display: flex !important; flex-basis: auto; }
-  
-    .navbar-expand-custom .navbar-nav {
-      flex-direction: row;
-      align-items: center;
-      margin-right: 3rem;
-    }
-  
-    .navbar-expand-custom .navbar-nav .nav-link {
-      padding-inline: var(--bs-navbar-nav-link-padding-x);
-    }
-  
-    .navbar-expand-custom .navbar-nav .btn-hive {
-      align-self: auto;
-      margin: 0 0 0 0.5rem;
-    }
-  }
-  
-  /* ---------- 4. BUTTONS ----------
-     Bootstrap buttons read every state from --bs-btn-* variables, so each
-     rule covers normal, hover, focus, click and .active. */
-  .btn-hive,
-  .btn-hive-outline,
-  .btn-cta {
-    --bs-btn-padding-y: 0.625rem;
-    --bs-btn-font-weight: 600;
-  }
-  
-  /* Solid yellow, dark text */
-  .btn-hive {
-    --bs-btn-color: var(--bg-dark);
-    --bs-btn-bg: var(--hive-yellow);
-    --bs-btn-border-color: var(--hive-yellow);
-    --bs-btn-hover-color: var(--bg-dark);
-    --bs-btn-hover-bg: var(--hive-yellow-dark);
-    --bs-btn-hover-border-color: var(--hive-yellow-dark);
-    --bs-btn-active-color: var(--bg-dark);
-    --bs-btn-active-bg: var(--hive-yellow-dark);
-    --bs-btn-active-border-color: var(--hive-yellow-dark);
-    --bs-btn-focus-shadow-rgb: 255, 204, 0;
-  }
-  
-  /* White outline, fills yellow on hover */
-  .btn-hive-outline {
-    --bs-btn-color: #fff;
-    --bs-btn-border-color: #fff;
-    --bs-btn-hover-color: var(--bg-dark);
-    --bs-btn-hover-bg: var(--hive-yellow);
-    --bs-btn-hover-border-color: var(--hive-yellow);
-    --bs-btn-active-color: var(--bg-dark);
-    --bs-btn-active-bg: var(--hive-yellow-dark);
-    --bs-btn-active-border-color: var(--hive-yellow-dark);
-    --bs-btn-focus-shadow-rgb: 255, 204, 0;
-  }
-  
-  /* Dark button with yellow text (used on the yellow banner; pair with Bootstrap's btn-dark) */
-  .btn-cta {
-    --bs-btn-color: var(--hive-yellow);
-    --bs-btn-hover-color: var(--hive-yellow);
-    --bs-btn-active-color: var(--hive-yellow);
-  }
-  
-  /* ---------- 5. REUSABLE COMPONENTS ---------- */
-  
-  /* CARD: one base look + four sizes. Use as: class="card card-hive card-hive-sm"
-     Cards fill their column's height, so cards in one row always match.
-     -xs  = small square tile (Popular tasks)
-     -sm  = tile (How the app works)
-     -md  = info card (problem/solution, Inside the app)
-     -lg  = hero card */
-  .card-hive {
-    --card-min-h: 0;
-    --card-pad: 1.25rem;
-    height: 100%;
-    min-height: var(--card-min-h);
-    background-color: var(--card-bg);
-    color: #fff;
-    border: 3px solid var(--card-border);
-    border-radius: var(--card-radius);
-    overflow: hidden;
-  }
-  
-  .card-hive .card-body { padding: var(--card-pad); }
-  
-  .card-hive-sm { --card-min-h: 260px; }
-  .card-hive-md { --card-min-h: 130px; --card-pad: 1.5rem; }
-  .card-hive-lg { --card-min-h: 420px; --card-pad: 1.875rem; }
-  .card-hive-xs { --card-pad: 0.75rem; height: auto; aspect-ratio: 1 / 1; }   /* small square tile */
-  
-  /* IMAGE SLOT: a dashed placeholder box. Put an <img> inside it and the
-     dashes and label disappear. Sizes: -xs 40px, -sm 80px, -lg 140px, -wide 16:9. */
-  .img-slot {
-    display: flex;
+@media (min-width: 768px) {
+  :root { --nav-logo-height: 80px; }   /* bigger logo from 768px */
+}
+
+
+/* ---------- 2. PAGE + SECTIONS ---------- */
+body {
+  background-color: var(--bg-dark);
+  color: var(--bg-light);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading);
+}
+
+/* Every section gets the same spacing */
+.section-hive { padding: 4rem 4%; }
+
+/* Yellow line between sections (bottom of one = top of the next, so no doubling) */
+main > .section-hive { border-bottom: 5px solid var(--hive-yellow); }
+
+/* Alternate sections (2nd, 4th, 6th...) turn light automatically.
+   The hero is section 1, so the first light one is directly below it. */
+main > .section-hive:nth-of-type(even) {
+  background-color: var(--bg-light);
+  color: var(--bg-dark);
+}
+
+.text-hive { color: var(--hive-yellow); }   /* yellow text helper */
+
+
+/* ---------- 3. NAVBAR ---------- */
+
+/* Logo: max-width always leaves room for the burger button */
+.navbar-brand { max-width: calc(100% - 4.5rem); }
+
+.navbar-brand img {
+  height: var(--nav-logo-height);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Links: white, transparent underline so nothing shifts on hover */
+.navbar .nav-link,
+.footer-link {
+  color: var(--nav-text);
+  text-decoration: underline 2px transparent;
+  text-underline-offset: 6px;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.footer-link:hover,
+.footer-link:focus {
+  color: var(--hive-orange);
+  text-decoration-color: var(--hive-orange);
+}
+
+/* Current page: white text, orange underline (keep after the hover rule) */
+.navbar .nav-link.active {
+  color: var(--nav-text);
+  text-decoration-color: var(--hive-orange);
+}
+
+/* Burger menu (below 620px): button sits left with space above and below */
+.navbar .btn-hive {
+  align-self: flex-start;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Full navbar from 620px up (recreates Bootstrap's "navbar-expand").
+   Below 620px Bootstrap's normal burger layout applies. */
+@media (min-width: 620px) {
+  .navbar-expand-custom { flex-wrap: nowrap; }
+  .navbar-expand-custom .navbar-toggler { display: none; }
+  .navbar-expand-custom .navbar-collapse { display: flex !important; flex-basis: auto; }
+
+  .navbar-expand-custom .navbar-nav {
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    width: var(--slot-w, 100%);
-    aspect-ratio: var(--slot-ratio, 4 / 3);
-    border: 2px dashed currentColor;
-    border-radius: 12px;
-    color: var(--hive-yellow);
-    font-size: 0.75rem;
-    text-align: center;
-  }
-  
-  .img-slot::after { content: attr(data-label); }
-  .img-slot:has(img) { border: 0; }
-  .img-slot:has(img)::after { display: none; }
-  .img-slot img { width: 100%; height: 100%; object-fit: contain; }
-  
-  .img-slot-xs   { --slot-w: 40px;  --slot-ratio: 1; }
-  .img-slot-sm   { --slot-w: 80px;  --slot-ratio: 1; }
-  .img-slot-lg   { --slot-w: 140px; --slot-ratio: 1; }
-  .img-slot-wide { --slot-ratio: 16 / 9; }
-  .img-slot-round { border-radius: 50%; overflow: hidden; }
-  .img-slot-fill { --slot-ratio: auto; flex: 1 1 0; min-height: 0; font-size: 0.65rem; }   /* fills a card */
-  
-  /* TILE GRID: 2 columns on small, 4 on medium, 8 on large (1200px+) */
-  .tile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  @media (min-width: 768px)  { .tile-grid { grid-template-columns: repeat(4, 1fr); } }
-  @media (min-width: 1200px) { .tile-grid { grid-template-columns: repeat(8, 1fr); } }
-  
-  /* Small dashed label */
-  .tag-hive {
-    display: inline-block;
-    color: var(--hive-yellow);
-    border: 2px dashed #b38c00;
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 10px;
-    font-weight: 700;
-  }
-  
-  /* Yellow hexagon number badge */
-  .hex-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 44px;
-    background-color: var(--hive-yellow);
-    color: var(--bg-dark);
-    font-weight: 700;
-    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-  }
-  
-  
-  /* ---------- 6. HERO ---------- */
-  .hero-section { padding-top: 5rem; }   /* room for the mascot above the card */
-  
-  .hero-title {
-    font-size: clamp(2rem, 3.5vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-  }
-  
-  .hero-description {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    max-width: 480px;
-  }
-  
-  /* Mascot: absolutely positioned against the column (which is position-relative).
-     A negative top lifts it above the card; z-index keeps it on top. */
-  .hero-mascot {
-    position: absolute;
-    top: -4.5rem;
-    right: 1.5rem;
-    z-index: 2;
-  }
-  
-  /* Task preview inputs (background restated on focus to beat Bootstrap's focus style) */
-  .task-input,
-  .task-input:focus {
-    background-color: #292929;
-    color: #fff;
-  }
-  
-  .task-input {
-    min-height: 46px;
-    border: 2px solid #484848;
-    border-radius: 9px;
-    font-size: 0.9rem;
-  }
-  
-  .task-input:focus {
-    border-color: var(--hive-yellow);
-    box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.15);
-  }
-  
-  .task-input::placeholder { color: #b5b5b5; opacity: 1; }
-  
-  
-  /* ---------- HOW IT WORKS: TIMELINE ----------
-     CHANGED: --black / --white were never defined, so the text colours on the
-     cards were being ignored. They now use --bg-dark and #fff. The card now has
-     the same border + radius as .card-hive so its edge shows on light AND dark
-     sections, and the image is contained (not cropped) on a light square. */
-  .timeline {
-    position: relative;
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 2rem 0;
+    margin-right: 3rem;
   }
 
-  /* centre line */
-  .timeline::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 4px;
-    margin-left: -2px;
-    background: var(--hive-orange);
+  .navbar-expand-custom .navbar-nav .nav-link {
+    padding-inline: var(--bs-navbar-nav-link-padding-x);
   }
 
-  .timeline-item {
-    position: relative;
-    width: 50%;
-    padding: 1rem 2.5rem;
+  .navbar-expand-custom .navbar-nav .btn-hive {
+    align-self: auto;
+    margin: 0 0 0 0.5rem;
   }
-  .timeline-item.left  { left: 0; }
-  .timeline-item.right { left: 50%; }
+}
 
-  /* dots */
-  .timeline-item::after {
-    content: "";
-    position: absolute;
-    top: 2rem;
-    z-index: 2;
-    width: 20px;
-    height: 20px;
-    background: var(--hive-orange);
-    border: 4px solid var(--bg-dark);
-    border-radius: 50%;
-  }
-  .timeline-item.left::after  { right: -10px; }
-  .timeline-item.right::after { left: -10px; }
+/* ---------- 4. BUTTONS ----------
+   Bootstrap buttons read every state from --bs-btn-* variables, so each
+   rule covers normal, hover, focus, click and .active. */
+.btn-hive,
+.btn-hive-outline,
+.btn-cta {
+  --bs-btn-padding-y: 0.625rem;
+  --bs-btn-font-weight: 600;
+}
 
-  /* card */
-  .tl-card {
-    border: 3px solid var(--card-border);
-    border-radius: var(--card-radius);
-    overflow: hidden;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-    overflow-wrap: anywhere;
-    min-width: 0;
-  }
+/* Solid yellow, dark text */
+.btn-hive {
+  --bs-btn-color: var(--bg-dark);
+  --bs-btn-bg: var(--hive-yellow);
+  --bs-btn-border-color: var(--hive-yellow);
+  --bs-btn-hover-color: var(--bg-dark);
+  --bs-btn-hover-bg: var(--hive-yellow-dark);
+  --bs-btn-hover-border-color: var(--hive-yellow-dark);
+  --bs-btn-active-color: var(--bg-dark);
+  --bs-btn-active-bg: var(--hive-yellow-dark);
+  --bs-btn-active-border-color: var(--hive-yellow-dark);
+  --bs-btn-focus-shadow-rgb: 255, 204, 0;
+}
 
-  /* top half (yellow on every card) */
-  .tl-head {
-    background: var(--hive-yellow);
-    color: var(--bg-dark);
-    padding: 1.25rem 1.5rem 5rem;      /* extra bottom space for the image */
-  }
-  .tl-head .year {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .tl-head h3 { margin: 0.15rem 0 0.5rem; font-size: 1.35rem; }
-  .tl-head p  { margin: 0; }
+/* White outline, fills yellow on hover */
+.btn-hive-outline {
+  --bs-btn-color: #fff;
+  --bs-btn-border-color: #fff;
+  --bs-btn-hover-color: var(--bg-dark);
+  --bs-btn-hover-bg: var(--hive-yellow);
+  --bs-btn-hover-border-color: var(--hive-yellow);
+  --bs-btn-active-color: var(--bg-dark);
+  --bs-btn-active-bg: var(--hive-yellow-dark);
+  --bs-btn-active-border-color: var(--hive-yellow-dark);
+  --bs-btn-focus-shadow-rgb: 255, 204, 0;
+}
 
-  /* square image with white border, overlapping both halves */
-  .tl-img {
-    display: block;
-    position: relative;
-    z-index: 1;
-    width: min(150px, 60%);
-    aspect-ratio: 1 / 1;
-    object-fit: contain;               /* shows the whole bee; use "cover" to fill the square */
-    background: var(--bg-light);
-    margin: -3rem auto;                /* pulls up into the top half AND down into the bottom half */
-    border: 5px solid var(--bg-light);
-    border-radius: 0;                  /* square corners; add a small radius if you prefer */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  }
+/* Dark button with yellow text (used on the yellow banner; pair with Bootstrap's btn-dark) */
+.btn-cta {
+  --bs-btn-color: var(--hive-yellow);
+  --bs-btn-hover-color: var(--hive-yellow);
+  --bs-btn-active-color: var(--hive-yellow);
+}
 
-  /* bottom half */
-  .tl-body {
-    padding: 5rem 1.5rem 1.5rem;       /* top padding clears the image */
-  }
-  .tl-body p { margin: 0; }
-  .tl-body p + p { margin-top: 0.75rem; }   /* NEW: space between two paragraphs */
+/* ---------- 5. REUSABLE COMPONENTS ---------- */
 
-  /* right cards: light bottom, dark text */
-  .timeline-item.right .tl-body {
-    background: var(--bg-light);
-    color: var(--bg-dark);
-  }
+/* CARD: one base look + four sizes. Use as: class="card card-hive card-hive-sm"
+   Cards fill their column's height, so cards in one row always match.
+   -xs  = small square tile (Popular tasks)
+   -sm  = tile (How the app works)
+   -md  = info card (problem/solution, Inside the app)
+   -lg  = hero card */
+.card-hive {
+  --card-min-h: 0;
+  --card-pad: 1.25rem;
+  height: 100%;
+  min-height: var(--card-min-h);
+  background-color: var(--card-bg);
+  color: #fff;
+  border: 3px solid var(--card-border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
 
-  /* left cards: dark bottom, white text */
-  .timeline-item.left .tl-body {
-    background: var(--bg-dark);
-    color: #fff;
-  }
+.card-hive .card-body { padding: var(--card-pad); }
 
-  /* tablet and mobile: single column, line on the left */
-  @media (max-width: 767px) {
-    .timeline::after { left: 20px; }
-    .timeline-item { width: 100%; padding: 1rem 0 1rem 3.25rem; }
-    .timeline-item.right { left: 0; }
-    .timeline-item.left::after,
-    .timeline-item.right::after { left: 10px; right: auto; }
-  }
+.card-hive-sm { --card-min-h: 260px; }
+.card-hive-md { --card-min-h: 130px; --card-pad: 1.5rem; }
+.card-hive-lg { --card-min-h: 420px; --card-pad: 1.875rem; }
+.card-hive-xs { --card-pad: 0.75rem; height: auto; aspect-ratio: 1 / 1; }   /* small square tile */
 
-  /* extra small screens */
-  @media (max-width: 480px) {
-    .timeline::after { left: 12px; width: 3px; margin-left: -1.5px; }
-    .timeline-item { padding: 0.75rem 0 0.75rem 2.25rem; }
-    .timeline-item.left::after,
-    .timeline-item.right::after { left: 3px; width: 16px; height: 16px; }
-    .tl-head { padding: 1rem 1rem 4.5rem; }
-    .tl-head h3 { font-size: 1.15rem; }
-    .tl-img { width: min(120px, 55%); margin: -2.5rem auto; }
-    .tl-body { padding: 4.25rem 1rem 1rem; }
-  }
-  
+/* IMAGE SLOT: a dashed placeholder box. Put an <img> inside it and the
+   dashes and label disappear. Sizes: -xs 40px, -sm 80px, -lg 140px, -wide 16:9. */
+.img-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--slot-w, 100%);
+  aspect-ratio: var(--slot-ratio, 4 / 3);
+  border: 2px dashed currentColor;
+  border-radius: 12px;
+  color: var(--hive-yellow);
+  font-size: 0.75rem;
+  text-align: center;
+}
 
-   /* TASKS: FULL PROCESS grid. Prefixed with .process-section so it beats other rules. */
-  .process-section .process-scroll { overflow-x: auto; padding-bottom: 0.5rem; }
-  .process-section .process-grid {
-    display: grid;
-    grid-template-columns: 120px repeat(6, minmax(150px, 1fr));
-    gap: 14px;
-    align-items: stretch;
-    min-width: 1060px;
-  }
-  .process-section .process-step { text-align: center; }
-  .process-section .process-lane {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-align: center;
-  }
-  .process-section .process-card {
-    --card-pad: 0.875rem;
-    --card-bg: #2e343a;
-    font-size: 0.875rem;
-    border-width: 1px;
-    border-color: rgba(255, 204, 0, 0.25);
-  }
-  .process-section .process-card.process-card-bee {
-    --card-bg: #3c3924;
-    border-color: rgba(255, 204, 0, 0.6);
-  }
-  .process-section .process-time-line { flex: 1; border-top: 2px dashed var(--hive-yellow); }
+.img-slot::after { content: attr(data-label); }
+.img-slot:has(img) { border: 0; }
+.img-slot:has(img)::after { display: none; }
+.img-slot img { width: 100%; height: 100%; object-fit: contain; }
+
+.img-slot-xs   { --slot-w: 40px;  --slot-ratio: 1; }
+.img-slot-sm   { --slot-w: 80px;  --slot-ratio: 1; }
+.img-slot-lg   { --slot-w: 140px; --slot-ratio: 1; }
+.img-slot-wide { --slot-ratio: 16 / 9; }
+.img-slot-round { border-radius: 50%; overflow: hidden; }
+.img-slot-fill { --slot-ratio: auto; flex: 1 1 0; min-height: 0; font-size: 0.65rem; }   /* fills a card */
+
+/* TILE GRID: 2 columns on small, 4 on medium, 8 on large (1200px+) */
+.tile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 768px)  { .tile-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1200px) { .tile-grid { grid-template-columns: repeat(8, 1fr); } }
+
+/* Small dashed label */
+.tag-hive {
+  display: inline-block;
+  color: var(--hive-yellow);
+  border: 2px dashed #b38c00;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Yellow hexagon number badge */
+.hex-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 44px;
+  background-color: var(--hive-yellow);
+  color: var(--bg-dark);
+  font-weight: 700;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
 
 
-  /* ---------- SIGNUP MODAL ---------- */
-  .hive-signup-modal .modal-content {
-    background-color: var(--bg-light);
-    color: #000;
-    border: 3px solid var(--card-border);
-    border-radius: var(--card-radius);
-    font-family: var(--font-body);
-  }
+/* ---------- 6. HERO ---------- */
+.hero-section { padding-top: 5rem; }   /* room for the mascot above the card */
 
-  .hive-signup-modal .modal-header {
-    border-bottom-color: var(--card-border);
-  }
+.hero-title {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
 
-  .hive-signup-modal .modal-title {
-    color: #000;
-    font-family: var(--font-heading);
-  }
+.hero-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 480px;
+}
 
-  .hive-signup-modal .modal-body,
-  .hive-signup-modal .form-label,
-  .hive-signup-modal .form-check-label {
-    color: #000;
-  }
+/* Mascot: absolutely positioned against the column (which is position-relative).
+   A negative top lifts it above the card; z-index keeps it on top. */
+.hero-mascot {
+  position: absolute;
+  top: -4.5rem;
+  right: 1.5rem;
+  z-index: 2;
+}
 
-  .hive-signup-modal .form-control {
-    min-height: 46px;
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #484848;
-    border-radius: 9px;
-  }
+/* Task preview inputs (background restated on focus to beat Bootstrap's focus style) */
+.task-input,
+.task-input:focus {
+  background-color: #292929;
+  color: #fff;
+}
 
-  .hive-signup-modal .form-control::placeholder {
-    color: #666;
-    opacity: 1;
-  }
+.task-input {
+  min-height: 46px;
+  border: 2px solid #484848;
+  border-radius: 9px;
+  font-size: 0.9rem;
+}
 
-  .hive-signup-modal .form-control:focus {
-    background-color: #fff;
-    color: #000;
-    border-color: var(--hive-yellow);
-    box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.2);
-  }
+.task-input:focus {
+  border-color: var(--hive-yellow);
+  box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.15);
+}
 
-  .hive-signup-modal .form-check-input {
-    accent-color: var(--hive-yellow-dark);
-  }
+.task-input::placeholder { color: #b5b5b5; opacity: 1; }
 
-  .hive-signup-modal .btn-hive {
-    --bs-btn-color: #000;
-    --bs-btn-hover-color: #000;
-    --bs-btn-active-color: #000;
-  }
 
-  .hive-signup-modal .btn-close {
-    filter: none;
-  }
+/* ---------- HOW IT WORKS: TIMELINE ----------
+   CHANGED: --black / --white were never defined, so the text colours on the
+   cards were being ignored. They now use --bg-dark and #fff. The card now has
+   the same border + radius as .card-hive so its edge shows on light AND dark
+   sections, and the image is contained (not cropped) on a light square. */
+.timeline {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
 
-  /* ---------- 7. CTA BANNER ---------- */
+/* centre line */
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  margin-left: -2px;
+  background: var(--hive-orange);
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 1rem 2.5rem;
+}
+.timeline-item.left  { left: 0; }
+.timeline-item.right { left: 50%; }
+
+/* dots */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  background: var(--hive-orange);
+  border: 4px solid var(--bg-dark);
+  border-radius: 50%;
+}
+.timeline-item.left::after  { right: -10px; }
+.timeline-item.right::after { left: -10px; }
+
+/* card */
+.tl-card {
+  border: 3px solid var(--card-border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+/* top half (yellow on every card) */
+.tl-head {
+  background: var(--hive-yellow);
+  color: var(--bg-dark);
+  padding: 1.25rem 1.5rem 5rem;      /* extra bottom space for the image */
+}
+.tl-head .year {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tl-head h3 { margin: 0.15rem 0 0.5rem; font-size: 1.35rem; }
+.tl-head p  { margin: 0; }
+
+/* square image with white border, overlapping both halves */
+.tl-img {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: min(150px, 60%);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;               /* shows the whole bee; use "cover" to fill the square */
+  background: var(--bg-light);
+  margin: -3rem auto;                /* pulls up into the top half AND down into the bottom half */
+  border: 5px solid var(--bg-light);
+  border-radius: 0;                  /* square corners; add a small radius if you prefer */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* bottom half */
+.tl-body {
+  padding: 5rem 1.5rem 1.5rem;       /* top padding clears the image */
+}
+.tl-body p { margin: 0; }
+.tl-body p + p { margin-top: 0.75rem; }   /* NEW: space between two paragraphs */
+
+/* right cards: light bottom, dark text */
+.timeline-item.right .tl-body {
+  background: var(--bg-light);
+  color: var(--bg-dark);
+}
+
+/* left cards: dark bottom, white text */
+.timeline-item.left .tl-body {
+  background: var(--bg-dark);
+  color: #fff;
+}
+
+/* tablet and mobile: single column, line on the left */
+@media (max-width: 767px) {
+  .timeline::after { left: 20px; }
+  .timeline-item { width: 100%; padding: 1rem 0 1rem 3.25rem; }
+  .timeline-item.right { left: 0; }
+  .timeline-item.left::after,
+  .timeline-item.right::after { left: 10px; right: auto; }
+}
+
+/* extra small screens */
+@media (max-width: 480px) {
+  .timeline::after { left: 12px; width: 3px; margin-left: -1.5px; }
+  .timeline-item { padding: 0.75rem 0 0.75rem 2.25rem; }
+  .timeline-item.left::after,
+  .timeline-item.right::after { left: 3px; width: 16px; height: 16px; }
+  .tl-head { padding: 1rem 1rem 4.5rem; }
+  .tl-head h3 { font-size: 1.15rem; }
+  .tl-img { width: min(120px, 55%); margin: -2.5rem auto; }
+  .tl-body { padding: 4.25rem 1rem 1rem; }
+}
+
+
+ /* TASKS: FULL PROCESS grid. Prefixed with .process-section so it beats other rules. */
+.process-section .process-scroll { overflow-x: auto; padding-bottom: 0.5rem; }
+.process-section .process-grid {
+  display: grid;
+  grid-template-columns: 120px repeat(6, minmax(150px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+  min-width: 1060px;
+}
+.process-section .process-step { text-align: center; }
+.process-section .process-lane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.process-section .process-card {
+  --card-pad: 0.875rem;
+  --card-bg: #2e343a;
+  font-size: 0.875rem;
+  border-width: 1px;
+  border-color: rgba(255, 204, 0, 0.25);
+}
+.process-section .process-card.process-card-bee {
+  --card-bg: #3c3924;
+  border-color: rgba(255, 204, 0, 0.6);
+}
+.process-section .process-time-line { flex: 1; border-top: 2px dashed var(--hive-yellow); }
+
+
+/* ---------- SIGNUP MODAL ---------- */
+.hive-signup-modal .modal-content {
+  background-color: var(--bg-light);
+  color: #000;
+  border: 3px solid var(--card-border);
+  border-radius: var(--card-radius);
+  font-family: var(--font-body);
+}
+
+.hive-signup-modal .modal-header {
+  border-bottom-color: var(--card-border);
+}
+
+.hive-signup-modal .modal-title {
+  color: #000;
+  font-family: var(--font-heading);
+}
+
+.hive-signup-modal .modal-body,
+.hive-signup-modal .form-label,
+.hive-signup-modal .form-check-label {
+  color: #000;
+}
+
+.hive-signup-modal .form-control {
+  min-height: 46px;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #484848;
+  border-radius: 9px;
+}
+
+.hive-signup-modal .form-control::placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+.hive-signup-modal .form-control:focus {
+  background-color: #fff;
+  color: #000;
+  border-color: var(--hive-yellow);
+  box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.2);
+}
+
+.hive-signup-modal .form-check-input {
+  accent-color: var(--hive-yellow-dark);
+}
+
+.hive-signup-modal .btn-hive {
+  --bs-btn-color: #000;
+  --bs-btn-hover-color: #000;
+  --bs-btn-active-color: #000;
+}
+
+.hive-signup-modal .btn-close {
+  filter: none;
+}
+
+/* ---------- 7. CTA BANNER ---------- */
+.banner-hive {
+  background-color: var(--hive-yellow);
+  color: var(--bg-dark);
+  border-radius: var(--card-radius);
+  padding: 2.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;          /* always centre the content */
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.cta-banner-copy {
+  flex: 1 1 auto;
+  max-width: 420px;
+}
+
+.cta-banner-image-start,
+.cta-banner-image-end {
+  flex-shrink: 0;
+}
+
+/* On mobile the side images are already hidden with d-none d-md-flex.
+   This rule just guarantees the remaining text stays perfectly centred. */
+@media (max-width: 767.98px) {
   .banner-hive {
-    background-color: var(--hive-yellow);
-    color: var(--bg-dark);
-    border-radius: var(--card-radius);
-    padding: 2.5rem 2rem;
-  }
-
-  .cta-banner-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: center;
-    column-gap: 1rem;
-  }
-
-  .cta-banner-image-start { justify-self: end; }
-  .cta-banner-copy { grid-column: 2; }
-  .cta-banner-image-end { justify-self: start; }
-
-  @media (max-width: 767.98px) {
-    .cta-banner-layout { grid-template-columns: 1fr; }
-    .cta-banner-copy { grid-column: 1; }
-  }
-  
-  .banner-hive .img-slot { color: var(--bg-dark); }   /* dark dashes on the yellow banner */
-  
-  
-  /* ---------- 7b. FOOTER SOCIAL ICONS (on black) ---------- */
-  .social-links a { color: #fff; transition: color 0.3s ease; }
-  .social-links a:hover,
-  .social-links a:focus { color: var(--hive-yellow); }
-  .social-links-yellow a { color: var(--hive-yellow); }
-  .social-links-yellow a:hover,
-  .social-links-yellow a:focus { color: #fff; }
-  
-  
-  /* ---------- 8. RESPONSIVE ---------- */
-  @media (max-width: 767.98px) {
-    .section-hive { padding: 3rem 4%; }
-    .hero-section { padding-top: 2.5rem; }
-    .card-hive-lg { --card-min-h: 380px; --card-pad: 1.375rem; }
-    .hero-title { font-size: clamp(2rem, 7vw, 3rem); }
-  
-    /* Mascot stays visible but smaller; extra space above the card makes room for it */
-    .hero-mascot { --slot-w: 90px; top: -3.25rem; right: 1rem; }
-    .hero-preview-col { margin-top: 3.5rem; }
-  }
-  
-  @media (max-width: 400px) {
-    .hero-buttons .btn { width: 100%; }
-    .task-input { font-size: 0.75rem; }
-  }
-
-  main > .section-hive.cta-section {
-    padding: 0;
-    background-color: var(--hive-yellow);
-    border-bottom: 0;
-  }
-
-  .cta-section .banner-hive {
-    zoom: 0.55;
-  }
-
-
-  /* =========================================================
-     9. NEW: PAGE COMPONENTS
-     Used by the Tasks, Tasks: full process, and Join the Hive +
-     Trust & Safety pages.
-     ========================================================= */
-
-  /* Illustration beside a page title or banner (keeps its shape, never overflows) */
-  .page-header-img {
-    display: block;
-    height: 150px;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-  }
-
-  .map-with-bees-column {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .map-with-bees-image {
-    display: block;
-    width: 97%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  @media (min-width: 576px) and (max-width: 767.98px) {
-    .map-with-bees-column + .hero-preview-col { margin-top: var(--bs-gutter-y); }
-  }
-
-  /* A card sitting inside another card: slightly lighter, thin border */
-  .card-hive-inner {
-    --card-bg: #2e343a;
-    border-width: 1px;
-    border-color: rgba(255, 204, 0, 0.25);
-  }
-
-  /* Smaller hexagon (e.g. the "Available now" marker) */
-  .hex-badge-sm { width: 30px; height: 34px; }
-
-  /* Yellow radio buttons / checkboxes on dark cards */
-  .card-hive .form-check-input:checked {
-    background-color: var(--hive-yellow);
-    border-color: var(--hive-yellow);
-  }
-  .card-hive .form-check-input:focus {
-    border-color: var(--hive-yellow);
-    box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.2);
-  }
-
-  /* FAQ accordion: dark panels, yellow border, yellow open title */
-  .accordion-hive {
-    --bs-accordion-bg: var(--card-bg);
-    --bs-accordion-color: #fff;
-    --bs-accordion-border-color: var(--card-border);
-    --bs-accordion-border-width: 3px;
-    --bs-accordion-border-radius: var(--card-radius);
-    --bs-accordion-inner-border-radius: calc(var(--card-radius) - 3px);
-    --bs-accordion-btn-color: #fff;
-    --bs-accordion-btn-bg: var(--card-bg);
-    --bs-accordion-active-color: var(--hive-yellow);
-    --bs-accordion-active-bg: var(--card-bg);
-    --bs-accordion-btn-focus-border-color: var(--hive-yellow);
-    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.2);
-    --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffcc00'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-  }
-  .accordion-hive .accordion-button { font-weight: 700; }
-
-  /* Reviews carousel: the arrows sit in the side gutters, clear of the card */
-  .carousel-hive { padding-inline: 3.5rem; }
-  .carousel-hive .carousel-control-prev,
-  .carousel-hive .carousel-control-next { width: 3rem; opacity: 1; }
-
-  @media (max-width: 480px) {
-    .carousel-hive { padding-inline: 2.5rem; }
-    .carousel-hive .carousel-control-prev,
-    .carousel-hive .carousel-control-next { width: 2.5rem; }
-  }
-
-
-  /* ---------- TASKS: FULL PROCESS (user / helper / BEE app grid) ---------- */
-  /* TASKS: FULL PROCESS grid. Prefixed with .process-section so it beats other rules. */
-  .process-section .process-scroll { overflow-x: auto; padding-bottom: 0.5rem; }
-  .process-section .process-grid {
-    display: grid;
-    grid-template-columns: 120px repeat(6, minmax(150px, 1fr));
-    gap: 14px;
-    align-items: stretch;
-    min-width: 1060px;
-  }
-  .process-section .process-step { text-align: center; }
-  .process-section .process-lane {
-    display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    padding: 2rem 1.25rem;
+  }
+  .cta-banner-copy {
+    max-width: 100%;
+  }
+}
+
+.banner-hive .img-slot { color: var(--bg-dark); }   /* dark dashes on the yellow banner */
+
+
+/* ---------- 7b. FOOTER SOCIAL ICONS (on black) ---------- */
+.social-links a { color: #fff; transition: color 0.3s ease; }
+.social-links a:hover,
+.social-links a:focus { color: var(--hive-yellow); }
+.social-links-yellow a { color: var(--hive-yellow); }
+.social-links-yellow a:hover,
+.social-links-yellow a:focus { color: #fff; }
+
+
+/* ---------- 8. RESPONSIVE ---------- */
+@media (max-width: 767.98px) {
+  .section-hive { padding: 3rem 4%; }
+  .hero-section { padding-top: 2.5rem; }
+  .card-hive-lg { --card-min-h: 380px; --card-pad: 1.375rem; }
+  .hero-title { font-size: clamp(2rem, 7vw, 3rem); }
+
+  /* Mascot stays visible but smaller; extra space above the card makes room for it */
+  .hero-mascot { --slot-w: 90px; top: -3.25rem; right: 1rem; }
+  .hero-preview-col { margin-top: 3.5rem; }
+}
+
+@media (max-width: 400px) {
+  .hero-buttons .btn { width: 100%; }
+  .task-input { font-size: 0.75rem; }
+}
+
+main > .section-hive.cta-section {
+  padding: 0;
+  background-color: var(--hive-yellow);
+  border-bottom: 0;
+}
+
+/* Removed the old zoom: 0.55 – it was breaking mobile centering */
+
+
+/* =========================================================
+   9. NEW: PAGE COMPONENTS
+   Used by the Tasks, Tasks: full process, and Join the Hive +
+   Trust & Safety pages.
+   ========================================================= */
+
+/* Illustration beside a page title or banner (keeps its shape, never overflows)
+   Reduced by 10% from the original 150px → 135px */
+.page-header-img {
+  display: block;
+  height: 135px;                 /* 10% smaller */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Keep the header flex container tidy on mobile */
+@media (max-width: 767.98px) {
+  .section-hive .d-flex.flex-wrap.align-items-center.justify-content-between {
+    flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
-  .process-section .process-card {
-    --card-pad: 0.875rem;
-    --card-bg: #2e343a;
-    font-size: 0.875rem;
-    border-width: 1px;
-    border-color: rgba(255, 204, 0, 0.25);
+  .page-header-img {
+    order: -1;                   /* image appears above the title on mobile if desired */
   }
-  .process-section .process-card.process-card-bee {
-    --card-bg: #3c3924;
-    border-color: rgba(255, 204, 0, 0.6);
-  }
-  .process-section .process-time-line { flex: 1; border-top: 2px dashed var(--hive-yellow); }
-  .process-card { text-align: center;}
-  
+}
+
+.map-with-bees-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-with-bees-image {
+  display: block;
+  width: 97%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .map-with-bees-column + .hero-preview-col { margin-top: var(--bs-gutter-y); }
+}
+
+/* A card sitting inside another card: slightly lighter, thin border */
+.card-hive-inner {
+  --card-bg: #2e343a;
+  border-width: 1px;
+  border-color: rgba(255, 204, 0, 0.25);
+}
+
+/* Smaller hexagon (e.g. the "Available now" marker) */
+.hex-badge-sm { width: 30px; height: 34px; }
+
+/* Yellow radio buttons / checkboxes on dark cards */
+.card-hive .form-check-input:checked {
+  background-color: var(--hive-yellow);
+  border-color: var(--hive-yellow);
+}
+.card-hive .form-check-input:focus {
+  border-color: var(--hive-yellow);
+  box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.2);
+}
+
+/* FAQ accordion: dark panels, yellow border, yellow open title */
+.accordion-hive {
+  --bs-accordion-bg: var(--card-bg);
+  --bs-accordion-color: #fff;
+  --bs-accordion-border-color: var(--card-border);
+  --bs-accordion-border-width: 3px;
+  --bs-accordion-border-radius: var(--card-radius);
+  --bs-accordion-inner-border-radius: calc(var(--card-radius) - 3px);
+  --bs-accordion-btn-color: #fff;
+  --bs-accordion-btn-bg: var(--card-bg);
+  --bs-accordion-active-color: var(--hive-yellow);
+  --bs-accordion-active-bg: var(--card-bg);
+  --bs-accordion-btn-focus-border-color: var(--hive-yellow);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.2);
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffcc00'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.accordion-hive .accordion-button { font-weight: 700; }
+
+/* Reviews carousel: the arrows sit in the side gutters, clear of the card */
+.carousel-hive { padding-inline: 3.5rem; }
+.carousel-hive .carousel-control-prev,
+.carousel-hive .carousel-control-next { width: 3rem; opacity: 1; }
+
+@media (max-width: 480px) {
+  .carousel-hive { padding-inline: 2.5rem; }
+  .carousel-hive .carousel-control-prev,
+  .carousel-hive .carousel-control-next { width: 2.5rem; }
+}
+
+
+/* ---------- TASKS: FULL PROCESS (user / helper / BEE app grid) ---------- */
+/* TASKS: FULL PROCESS grid. Prefixed with .process-section so it beats other rules. */
+.process-section .process-scroll { overflow-x: auto; padding-bottom: 0.5rem; }
+.process-section .process-grid {
+  display: grid;
+  grid-template-columns: 120px repeat(6, minmax(150px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+  min-width: 1060px;
+}
+.process-section .process-step { text-align: center; }
+.process-section .process-lane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.process-section .process-card {
+  --card-pad: 0.875rem;
+  --card-bg: #2e343a;
+  font-size: 0.875rem;
+  border-width: 1px;
+  border-color: rgba(255, 204, 0, 0.25);
+}
+.process-section .process-card.process-card-bee {
+  --card-bg: #3c3924;
+  border-color: rgba(255, 204, 0, 0.6);
+}
+.process-section .process-time-line { flex: 1; border-top: 2px dashed var(--hive-yellow); }
+.process-card { text-align: center;}
+
+
+/* ---------- CONTACT FORM TEXTAREA ---------- */
+/* Keeps the textarea centred with equal padding and rounded corners on all widths */
+#signup-form textarea,
+.contact-textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.75rem 1rem;
+  border: 2px solid #484848;
+  border-radius: 9px;
+  background-color: #292929;
+  color: #fff;
+  resize: vertical;
+  min-height: 140px;
+}
+
+#signup-form textarea:focus,
+.contact-textarea:focus {
+  border-color: var(--hive-yellow);
+  box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.15);
+  outline: none;
+}
